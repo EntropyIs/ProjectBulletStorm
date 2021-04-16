@@ -97,6 +97,7 @@ project "BulletStorm"
 	includedirs
 	{
 		"src/EntropyLib",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
