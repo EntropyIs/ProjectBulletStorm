@@ -1,7 +1,11 @@
 #include "ecpch.h"
 #include "Renderer.h"
 
-Entropy::Renderer::Renderer(float* vertices)
+#include "Entropy/Math/Transform3D.h"
+
+#include "ResourseManager.h"
+
+Entropy::Graphics::Renderer::Renderer(float* vertices, int numVertices, std::string shader) : _numVertices(numVertices), _shader(shader)
 {
 	unsigned int VBO;
 
@@ -18,16 +22,21 @@ Entropy::Renderer::Renderer(float* vertices)
 	glBindVertexArray(0);
 }
 
-Entropy::Renderer::~Renderer()
+Entropy::Graphics::Renderer::~Renderer()
 {
 	glDeleteVertexArrays(1, &_VAO);
 }
 
-void Entropy::Renderer::OnRender()
+void Entropy::Graphics::Renderer::OnRender()
 {
 	// Prepare Transformations
-	// Math::Mat4 model = Math::Translate(Math::Vec3(position.X - ((float)spriteData.cel_width / 2.0f), position.Y - ((float)spriteData.cel_height / 2.0f), 0.0f)) * Math::RotateZ(Math::Radians(rotAngle)) * Math::Scale((float)spriteData.cel_width, (float)spriteData.cel_height, 1.0f);
+	Entropy::Math::Mat4 model = Math::Mat4();
+
+	ResourceManager::GetShader(_shader).Use();
+	ResourceManager::GetShader(_shader).SetMat4("model", model);
 	
 	// Render
-
+	glBindVertexArray(_VAO);
+	glDrawArrays(GL_TRIANGLES, 0, _numVertices);
+	glBindVertexArray(0);
 }

@@ -4,16 +4,23 @@
 
 namespace Entropy
 {
-	class ENTROPY_API Renderer
+	namespace Graphics
 	{
-	public:
-		Renderer(float* vertices);
-		virtual ~Renderer();
+		class ENTROPY_API Renderer
+		{
+		public:
+			Renderer(float* vertices, int numVertices, std::string shader);
+			virtual ~Renderer();
 
-		void OnRender();
+			void OnRender();
 
-	protected:
-		unsigned int _VAO;
-	};
+		protected:
+			unsigned int _VAO;
+
+			unsigned int _numVertices;
+
+			std::string _shader;
+		};
+	}
 }
 
