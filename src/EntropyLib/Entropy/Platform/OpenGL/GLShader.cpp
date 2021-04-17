@@ -1,6 +1,8 @@
 #include "ecpch.h"
 #include "GLShader.h"
 
+#include "Entropy/Tools/Log.h"
+
 Entropy::Graphics::GLShader::GLShader(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometaryShaderPath)
 {
 	try
@@ -164,6 +166,8 @@ unsigned int Entropy::Graphics::GLShader::Compile(const char* path, unsigned int
 {
 	try
 	{
+		Entropy::log::message("SHADER_COMPILER", (std::string("Compiliing Shader:") + path).c_str());
+
 		// Read from file
 		std::ifstream inFile(path);
 		inFile.exceptions(std::ifstream::failbit || std::ifstream::badbit);
@@ -204,10 +208,9 @@ unsigned int Entropy::Graphics::GLShader::Compile(const char* path, unsigned int
 	}
 	catch (std::ifstream::failure e)
 	{
+		
 		std::string errString = "Shader file, " + std::string(path) + ", not succefully read.";
-#ifdef _DEBUG
-		std::cout << errString << std::endl;
-#endif // DEBUG
+		Entropy::log::error("SHADER_COMPILER", errString.c_str());
 		throw std::exception(errString.c_str());
 	}
 }
