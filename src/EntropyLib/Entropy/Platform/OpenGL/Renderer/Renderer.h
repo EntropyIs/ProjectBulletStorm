@@ -9,11 +9,11 @@ namespace Entropy
 		class ENTROPY_API Renderer
 		{
 		public:
-			Renderer(float* vertices, std::string shader) : _VAO(0), _numVertices(sizeof(vertices) / sizeof(float)), _shader(shader) {};
+			Renderer() : _VAO(0), _numVertices(0), _shader() {};
+			Renderer(unsigned int numVertices, std::string shader) : _VAO(0), _numVertices(numVertices), _shader(shader) {};
 			virtual ~Renderer();
 
 			virtual void OnRender() = 0;
-			virtual void OnUpdate() = 0;
 
 		protected:
 			unsigned int _VAO;
