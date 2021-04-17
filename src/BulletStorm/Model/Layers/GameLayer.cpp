@@ -20,11 +20,16 @@ GameLayer::~GameLayer()
 void GameLayer::OnUpdate()
 {
 	//Entropy::log::message("GAME_LAYER", "Update");
+	for (GameObject* object : _gameObjects)
+	{
+		object->OnUpdate();
+		object->OnRender();
+	}
 }
 
 void GameLayer::OnEvent(Entropy::Event& e)
 {
-	Entropy::log::trace("GAME_LAYER", e);
+	//Entropy::log::trace("GAME_LAYER", e);
 
 	if (!e.isHandled())
 	{

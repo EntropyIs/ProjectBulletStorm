@@ -12,6 +12,9 @@ void GameObject::OnUpdate()
 
 void GameObject::OnRender()
 {
+#ifdef ENTROPY_DEBUG
+	_hitbox.OnRender(); // Only render Hitbox if in Debug Mode
+#endif // ENTROPY_DEBUG
 }
 
 void GameObject::SetVX(float vX)
