@@ -26,6 +26,13 @@ void GameLayer::OnEvent(Entropy::Event& e)
 {
 	Entropy::log::trace("GAME_LAYER", e);
 
-	for (GameObject* object : _gameObjects)
-		OnEvent(e);
+	if (!e.isHandled())
+	{
+		for (GameObject* object : _gameObjects)
+		{
+			object->OnEvent(e);
+			if (e.isHandled())
+				break;
+		}
+	}
 }

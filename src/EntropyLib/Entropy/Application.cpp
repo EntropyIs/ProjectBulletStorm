@@ -48,12 +48,14 @@ void Entropy::Application::OnEvent(Event& e)
 	dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNCTION(Application::OnWindowClose));
 
 	//Entropy::log::trace("APP", e);
-
-	for (auto it = _layerStack.end(); it != _layerStack.begin(); )
+	if (!e.isHandled())
 	{
-		(*--it)->OnEvent(e);
-		if (e.isHandled())
-			break;
+		for (auto it = _layerStack.end(); it != _layerStack.begin(); )
+		{
+			(*--it)->OnEvent(e);
+			if (e.isHandled())
+				break;
+		}
 	}
 }
 
