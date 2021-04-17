@@ -16,6 +16,7 @@ namespace Entropy
 		class ENTROPY_API GLShader
 		{
 		public:
+			GLShader() : _ID(0) {};
 			GLShader(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometaryShaderPath = nullptr);
 
 			void Use() const;
