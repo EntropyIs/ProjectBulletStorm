@@ -5,8 +5,6 @@
 
 #include "Events/Event.h"
 
-#define BIND_EVENT_FUNCTION(x) std::bind(&x, this, std::placeholders::_1)
-
 Entropy::Application::Application()
 {
 	_window = std::unique_ptr<Entropy::Window>(Entropy::Window::Create());
@@ -49,7 +47,7 @@ void Entropy::Application::OnEvent(Event& e)
 	EventDispatcher dispatcher(e);
 	dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNCTION(Application::OnWindowClose));
 
-	Entropy::log::trace("APP", e);
+	//Entropy::log::trace("APP", e);
 
 	for (auto it = _layerStack.end(); it != _layerStack.begin(); )
 	{
@@ -71,6 +69,7 @@ void Entropy::Application::PushOverlay(Layer* overlay)
 
 bool Entropy::Application::OnWindowClose(Entropy::WindowCloseEvent& e)
 {
+	Entropy::log::trace("APP", e);
 	_running = false;
 	return true;
 }

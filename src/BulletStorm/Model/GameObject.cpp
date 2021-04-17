@@ -10,6 +10,10 @@ void GameObject::OnUpdate()
 	_hitbox.OnUpdate(_x, _y);
 }
 
+void GameObject::OnRender()
+{
+}
+
 void GameObject::SetVX(float vX)
 {
 	_vX = vX;

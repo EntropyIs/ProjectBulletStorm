@@ -3,6 +3,7 @@
 #include "HitBox.h"
 
 #include <Entropy/Events/Event.h>
+#include <Entropy/Platform/OpenGL/Renderer/Renderer2D.h>
 
 class GameObject
 {
@@ -14,6 +15,7 @@ public:
 	virtual ~GameObject() {}
 
 	virtual void OnUpdate();
+	virtual void OnRender();
 	virtual void OnEvent(Entropy::Event& event) {};
 
 	void SetVX(float vX);

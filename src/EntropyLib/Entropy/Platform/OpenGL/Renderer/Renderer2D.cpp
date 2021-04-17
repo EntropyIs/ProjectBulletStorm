@@ -3,7 +3,9 @@
 
 #include "..\ResourseManager.h"
 
-Entropy::Graphics::Renderer2D::Renderer2D(float* vertices, unsigned int numVertices, std::string shader) : Renderer(numVertices, shader)
+#include "Entropy/Math/Transform3D.h"
+
+Entropy::Graphics::Renderer2D::Renderer2D(float* vertices, unsigned int numVertices, std::string shader) : Renderer(numVertices, shader), _x(0), _y(0)
 {
 	unsigned int VBO;
 
@@ -24,7 +26,7 @@ Entropy::Graphics::Renderer2D::Renderer2D(float* vertices, unsigned int numVerti
 void Entropy::Graphics::Renderer2D::OnRender()
 {
 	// Prepare Transformations
-	Entropy::Math::Mat4 model = Math::Mat4();
+	Entropy::Math::Mat4 model = Entropy::Math::Translate(Entropy::Math::Vec3(_x, _y));
 
 	ResourceManager::GetShader(_shader).Use();
 	ResourceManager::GetShader(_shader).SetMat4("model", model);
@@ -33,4 +35,10 @@ void Entropy::Graphics::Renderer2D::OnRender()
 	glBindVertexArray(_VAO);
 	glDrawArrays(GL_TRIANGLES, 0, _numVertices);
 	glBindVertexArray(0);
+}
+
+void Entropy::Graphics::Renderer2D::SetPosition(float x, float y)
+{
+	_x = x;
+	_y = y;
 }
