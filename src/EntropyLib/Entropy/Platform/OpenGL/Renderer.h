@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Entropy/Tools/API.h"
+
 namespace Entropy
 {
-	class Renderer
+	class ENTROPY_API Renderer
 	{
 	public:
 		Renderer(float* vertices);
