@@ -6,8 +6,6 @@
 #include "Entropy/Events/KeyEvent.h"
 #include "Entropy/Events/MouseEvent.h"
 
-#include <glad/glad.h>
-
 static bool GLFWInitalized = false;
 
 static void GLFWErrorCallback(int error, const char* description)

@@ -1,6 +1,5 @@
+#include "ecpch.h"
 #include "Renderer.h"
-
-#include <glad/glad.h>
 
 Entropy::Renderer::Renderer(float* vertices)
 {
@@ -27,7 +26,8 @@ Entropy::Renderer::~Renderer()
 void Entropy::Renderer::OnRender()
 {
 	// Prepare Transformations
-
+	// Math::Mat4 model = Math::Translate(Math::Vec3(position.X - ((float)spriteData.cel_width / 2.0f), position.Y - ((float)spriteData.cel_height / 2.0f), 0.0f)) * Math::RotateZ(Math::Radians(rotAngle)) * Math::Scale((float)spriteData.cel_width, (float)spriteData.cel_height, 1.0f);
+	
 	// Render
 
 }

@@ -16,6 +16,10 @@
 #include <chrono>
 #include <ctime>
 
+#include <cmath>
+
+#include <glad/glad.h>
+
 #ifdef ENTROPY_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "EntropyCore.h"
 #include "HitBox.h"
+
+#include <Entropy/Events/Event.h>
 
 class GameObject
 {
